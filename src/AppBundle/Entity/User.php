@@ -3,9 +3,10 @@
 namespace AppBundle\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -21,6 +22,8 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Groups({"user-read", "project-read"})
      */
     protected $id;
 
@@ -31,7 +34,7 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user"})
+     * @Groups({"user", "project-read"})
      */
     protected $fullname;
 
@@ -45,19 +48,84 @@ class User extends BaseUser
      */
     protected $username;
 
-    public function setFullname($fullname)
+    /**
+     * @ORM\OneToMany(targetEntity=Mission::class, mappedBy="user", cascade={"persist"})
+     * @Groups({"user-write"})
+     */
+    private $missions;
+
+    /**
+     * Set fullname.
+     *
+     * @param string|null $fullname
+     *
+     * @return User
+     */
+    public function setFullname($fullname = null)
     {
         $this->fullname = $fullname;
 
         return $this;
     }
+
+    /**
+     * Get fullname.
+     *
+     * @return string|null
+     */
     public function getFullname()
     {
         return $this->fullname;
     }
 
-    public function isUser(UserInterface $user = null)
+    /**
+     * Add mission.
+     *
+     * @param Mission $mission
+     *
+     * @return User
+     */
+    public function addMission(Mission $mission)
     {
-        return $user instanceof self && $user->id === $this->id;
+        $this->missions[] = $mission;
+
+        return $this;
+    }
+
+    /**
+     * Remove mission.
+     *
+     * @param Mission $mission
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeMission(Mission $mission)
+    {
+        return $this->missions->removeElement($mission);
+    }
+
+    /**
+     * Get missions.
+     *
+     * @return Collection
+     */
+    public function getMissions()
+    {
+        return $this->missions;
+    }
+
+    /**
+     * @Groups({"user-read"})
+     */
+    public function getProjects(): Collection
+    {
+        $projects = new ArrayCollection();
+
+        /** @var Mission $mission */
+        foreach ($this->missions as $mission) {
+            $projects->add($mission->getProject());
+        }
+
+        return $projects;
     }
 }
