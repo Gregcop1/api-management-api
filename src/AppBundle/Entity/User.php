@@ -23,9 +23,9 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"user-read", "project-read"})
+     * @Groups({"user-read", "project-read", "period"})
      */
-    protected $id;
+    protected $id = -1;
 
     /**
      * @Groups({"user"})
@@ -49,10 +49,10 @@ class User extends BaseUser
     protected $username;
 
     /**
-     * @ORM\OneToMany(targetEntity=Mission::class, mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Period::class, mappedBy="user", cascade={"persist"})
      * @Groups({"user-write"})
      */
-    private $missions;
+    private $periods;
 
     /**
      * Set fullname.
@@ -79,53 +79,38 @@ class User extends BaseUser
     }
 
     /**
-     * Add mission.
+     * Add period.
      *
-     * @param Mission $mission
+     * @param \AppBundle\Entity\Period $period
      *
      * @return User
      */
-    public function addMission(Mission $mission)
+    public function addPeriod(\AppBundle\Entity\Period $period)
     {
-        $this->missions[] = $mission;
+        $this->periods[] = $period;
 
         return $this;
     }
 
     /**
-     * Remove mission.
+     * Remove period.
      *
-     * @param Mission $mission
+     * @param \AppBundle\Entity\Period $period
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeMission(Mission $mission)
+    public function removePeriod(\AppBundle\Entity\Period $period)
     {
-        return $this->missions->removeElement($mission);
+        return $this->periods->removeElement($period);
     }
 
     /**
-     * Get missions.
+     * Get periods.
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMissions()
+    public function getPeriods()
     {
-        return $this->missions;
-    }
-
-    /**
-     * @Groups({"user-read"})
-     */
-    public function getProjects(): Collection
-    {
-        $projects = new ArrayCollection();
-
-        /** @var Mission $mission */
-        foreach ($this->missions as $mission) {
-            $projects->add($mission->getProject());
-        }
-
-        return $projects;
+        return $this->periods;
     }
 }

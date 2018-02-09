@@ -23,12 +23,12 @@ class Project
      * @var int The id of this project.
      *
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"project-write", "user-read"})
+     * @Groups({"project-read", "user-read", "period"})
      */
-    private $id;
+    private $id = -1;
 
     /**
      * @var string The name of this project.
@@ -39,16 +39,24 @@ class Project
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Mission::class, mappedBy="project", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(name="User", referencedColumnName="id")
+     *
+     * @Groups({"project"})
+     */
+    private $chief;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Period::class, mappedBy="project", cascade={"persist"})
      * @Groups({"project-write"})
      */
-    private $missions;
+    private $periods;
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->missions = new ArrayCollection();
+        $this->periods = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -86,53 +94,62 @@ class Project
     }
 
     /**
-     * Add mission.
+     * Set chief.
      *
-     * @param Mission $mission
+     * @param \AppBundle\Entity\User|null $chief
      *
      * @return Project
      */
-    public function addMission(Mission $mission)
+    public function setChief(\AppBundle\Entity\User $chief = null)
     {
-        $this->missions[] = $mission;
+        $this->chief = $chief;
 
         return $this;
     }
 
     /**
-     * Remove mission.
+     * Get chief.
      *
-     * @param Mission $mission
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getChief()
+    {
+        return $this->chief;
+    }
+
+    /**
+     * Add period.
+     *
+     * @param \AppBundle\Entity\Period $period
+     *
+     * @return Project
+     */
+    public function addPeriod(\AppBundle\Entity\Period $period)
+    {
+        $this->periods[] = $period;
+
+        return $this;
+    }
+
+    /**
+     * Remove period.
+     *
+     * @param \AppBundle\Entity\Period $period
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeMission(Mission $mission)
+    public function removePeriod(\AppBundle\Entity\Period $period)
     {
-        return $this->missions->removeElement($mission);
+        return $this->periods->removeElement($period);
     }
 
     /**
-     * Get missions.
+     * Get periods.
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMissions()
+    public function getPeriods()
     {
-        return $this->missions;
-    }
-
-    /**
-     * @Groups({"project-read"})
-     */
-    public function getUsers(): Collection
-    {
-        $users = new ArrayCollection();
-
-        /** @var Mission $mission */
-        foreach ($this->missions as $mission) {
-            $users->add($mission->getUser());
-        }
-
-        return $users;
+        return $this->periods;
     }
 }
