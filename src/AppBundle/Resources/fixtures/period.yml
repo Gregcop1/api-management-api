@@ -1,0 +1,46 @@
+AppBundle\Entity\Period:
+    yesterday_morning (template):
+        start: '<(new \DateTime("yesterday midnight"))>'
+    yesterday_noon (template):
+        start: '<(new \DateTime("yesterday noon"))>'
+    today_morning (template):
+        start: '<(new \DateTime("today midnight"))>'
+    today_noon (template):
+        start: '<(new \DateTime("today noon"))>'
+    tomorrow_morning (template):
+        start: '<(new \DateTime("tomorrow midnight"))>'
+    tomorrow_noon (template):
+        start: '<(new \DateTime("tomorrow noon"))>'
+
+    project_walibuy (template):
+        project: '@walibuy'
+    project_decathlon (template):
+        project: '@decathlon'
+
+    user_gregory (template):
+        user: '@gregory'
+    user_quentin (template):
+        user: '@quentin'
+
+    yesterday_morning_gregory_walibuy (extends yesterday_morning, extends project_walibuy, extends user_gregory):
+        type: '@ag'
+    yesterday_noon_gregory_walibuy (extends yesterday_noon, extends project_walibuy, extends user_gregory):
+        type: '@ag'
+    yesterday_morning_gregory_decathlon (extends yesterday_morning, extends project_decathlon, extends user_gregory):
+        type: '@ag'
+    yesterday_noon_gregory_decathlon (extends yesterday_noon, extends project_decathlon, extends user_gregory):
+        type: '@ag'
+    yesterday_morning_quentin_walibuy (extends yesterday_morning, extends project_walibuy, extends user_quentin):
+        type: '@ag'
+    yesterday_noon_quentin_walibuy (extends yesterday_noon, extends project_walibuy, extends user_quentin):
+        type: '@ag'
+    today_morning_gregory_walibuy (extends today_morning, extends project_walibuy, extends user_gregory):
+        type: '@regie'
+    today_noon_gregory_walibuy (extends today_noon, extends project_walibuy, extends user_gregory):
+        type: '@conge'
+    today_noon_gregory_decathlon (extends today_noon, extends project_decathlon, extends user_gregory):
+        type: '@conge'
+    tomorrow_morning_gregory_walibuy (extends tomorrow_morning, extends project_walibuy, extends user_gregory):
+        type: '@regie'
+    tomorrow_noon_gregory_walibuy (extends tomorrow_noon, extends project_walibuy, extends user_gregory):
+        type: '@regie'

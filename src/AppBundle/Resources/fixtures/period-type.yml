@@ -1,0 +1,7 @@
+AppBundle\Entity\PeriodType:
+    ag:
+        name: 'Assemblée Générale'
+    regie:
+        name: 'Régie'
+    conge:
+        name: 'Congé'

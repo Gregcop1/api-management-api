@@ -1,0 +1,9 @@
+AppBundle\Entity\User:
+  gregory:
+      username: 'Grégory Copin'
+      plainPassword: 'password'
+      email: 'gregory@les-tilleuls.coop'
+  quentin:
+      username: 'Quentin Barloy'
+      plainPassword: 'password'
+      email: 'quentin@les-tilleuls.coop'

@@ -1,0 +1,7 @@
+AppBundle\Entity\Project:
+    decathlon:
+        name: 'Décathlon'
+        chief: '@gregory'
+    walibuy:
+        name: 'Walibuy'
+        chief: '@quentin'
