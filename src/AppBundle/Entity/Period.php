@@ -42,9 +42,10 @@ class Period
     private $start;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity=PeriodType::class)
+     * @ORM\JoinColumn(name="period_type_id", referencedColumnName="id")
      *
-     * @Groups({"period", "project-read", "user-read"})
+     * @Groups({"period"})
      */
     private $type;
 
@@ -70,30 +71,6 @@ class Period
     public function getStart()
     {
         return \DateTime::createFromFormat('Y-m-d H:m:i', $this->start);
-    }
-
-    /**
-     * Set type.
-     *
-     * @param string $type
-     *
-     * @return Period
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type.
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -142,5 +119,29 @@ class Period
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set type.
+     *
+     * @param \AppBundle\Entity\PeriodType|null $type
+     *
+     * @return Period
+     */
+    public function setType(\AppBundle\Entity\PeriodType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type.
+     *
+     * @return \AppBundle\Entity\PeriodType|null
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
