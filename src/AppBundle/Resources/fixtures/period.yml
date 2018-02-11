@@ -1,16 +1,16 @@
 AppBundle\Entity\Period:
     yesterday_morning (template):
-        start: '<(new \DateTime("yesterday midnight"))>'
+        start: '<(date_format(date_create("yesterday midnight"), "Y-m-d H:m:i"))>'
     yesterday_noon (template):
-        start: '<(new \DateTime("yesterday noon"))>'
+        start: '<(date_format(date_create("yesterday noon"), "Y-m-d H:m:i"))>'
     today_morning (template):
-        start: '<(new \DateTime("today midnight"))>'
+        start: '<(date_format(date_create("today midnight"), "Y-m-d H:m:i"))>'
     today_noon (template):
-        start: '<(new \DateTime("today noon"))>'
+        start: '<(date_format(date_create("today noon"), "Y-m-d H:m:i"))>'
     tomorrow_morning (template):
-        start: '<(new \DateTime("tomorrow midnight"))>'
+        start: '<(date_format(date_create("tomorrow midnight"), "Y-m-d H:m:i"))>'
     tomorrow_noon (template):
-        start: '<(new \DateTime("tomorrow noon"))>'
+        start: '<(date_format(date_create("tomorrow noon"), "Y-m-d H:m:i"))>'
 
     project_walibuy (template):
         project: '@walibuy'

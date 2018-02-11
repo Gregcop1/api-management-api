@@ -1,9 +1,12 @@
 AppBundle\Entity\User:
-  gregory:
-      username: 'Grégory Copin'
+  enabled (template):
+      enabled: true
+
+  gregory (extends enabled):
+      username: 'gregory'
       plainPassword: 'password'
       email: 'gregory@les-tilleuls.coop'
-  quentin:
-      username: 'Quentin Barloy'
+  quentin (extends enabled):
+      username: 'quentin'
       plainPassword: 'password'
       email: 'quentin@les-tilleuls.coop'

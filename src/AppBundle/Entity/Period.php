@@ -52,13 +52,13 @@ class Period
     /**
      * Set start.
      *
-     * @param \DateTime $start
+     * @param string $start
      *
      * @return Period
      */
     public function setStart($start)
     {
-        $this->start = $start->format('Y-m-d H:m:i');
+        $this->start = $start;
 
         return $this;
     }
@@ -66,11 +66,11 @@ class Period
     /**
      * Get start.
      *
-     * @return \DateTime
+     * @return string
      */
     public function getStart()
     {
-        return \DateTime::createFromFormat('Y-m-d H:m:i', $this->start);
+        return $this->start;
     }
 
     /**
