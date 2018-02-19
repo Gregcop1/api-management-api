@@ -2,11 +2,20 @@ AppBundle\Entity\User:
   enabled (template):
       enabled: true
 
-  gregory (extends enabled):
+  role_user (template):
+      roles: ['ROLE_USER']
+  role_admin (template):
+      roles: ['ROLE_ADMIN']
+
+  gregory (extends enabled, extends role_user):
       username: 'gregory'
       plainPassword: 'password'
       email: 'gregory@les-tilleuls.coop'
-  quentin (extends enabled):
+  quentin (extends enabled, extends role_user):
       username: 'quentin'
       plainPassword: 'password'
       email: 'quentin@les-tilleuls.coop'
+  olivier (extends enabled, extends role_admin):
+      username: 'olivier'
+      plainPassword: 'password'
+      email: 'olivier@les-tilleuls.coop'

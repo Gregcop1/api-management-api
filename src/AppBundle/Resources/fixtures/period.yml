@@ -21,8 +21,6 @@ AppBundle\Entity\Period:
         user: '@gregory'
     user_quentin (template):
         user: '@quentin'
-    user_olivier (template):
-        user: '@olivier'
 
     yesterday_morning_ag (extends yesterday_morning):
         type: '@ag'
