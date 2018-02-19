@@ -3,5 +3,7 @@ AppBundle\Entity\PeriodType:
         name: 'Assemblée Générale'
     regie:
         name: 'Régie'
-    conge:
-        name: 'Congé'
+    conge_paye:
+        name: 'Congé payé'
+    conge_ss:
+        name: 'Congé sans solde'

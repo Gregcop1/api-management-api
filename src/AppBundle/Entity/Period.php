@@ -16,18 +16,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Period
 {
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="periods")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      *
      * @Groups({"period", "user-read"})
      */
     private $project;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="periods")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *
      * @Groups({"period", "project-read"})
      */
@@ -100,11 +98,11 @@ class Period
     /**
      * Set user.
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \AppBundle\Entity\User|null $user
      *
      * @return Period
      */
-    public function setUser(\AppBundle\Entity\User $user)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -114,7 +112,7 @@ class Period
     /**
      * Get user.
      *
-     * @return \AppBundle\Entity\User
+     * @return \AppBundle\Entity\User|null
      */
     public function getUser()
     {

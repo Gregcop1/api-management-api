@@ -21,26 +21,18 @@ AppBundle\Entity\Period:
         user: '@gregory'
     user_quentin (template):
         user: '@quentin'
+    user_olivier (template):
+        user: '@olivier'
 
-    yesterday_morning_gregory_walibuy (extends yesterday_morning, extends project_walibuy, extends user_gregory):
+    yesterday_morning_ag (extends yesterday_morning):
         type: '@ag'
-    yesterday_noon_gregory_walibuy (extends yesterday_noon, extends project_walibuy, extends user_gregory):
-        type: '@ag'
-    yesterday_morning_gregory_decathlon (extends yesterday_morning, extends project_decathlon, extends user_gregory):
-        type: '@ag'
-    yesterday_noon_gregory_decathlon (extends yesterday_noon, extends project_decathlon, extends user_gregory):
-        type: '@ag'
-    yesterday_morning_quentin_walibuy (extends yesterday_morning, extends project_walibuy, extends user_quentin):
-        type: '@ag'
-    yesterday_noon_quentin_walibuy (extends yesterday_noon, extends project_walibuy, extends user_quentin):
+    yesterday_noon_ag (extends yesterday_noon):
         type: '@ag'
     today_morning_gregory_walibuy (extends today_morning, extends project_walibuy, extends user_gregory):
         type: '@regie'
-    today_noon_gregory_walibuy (extends today_noon, extends project_walibuy, extends user_gregory):
-        type: '@conge'
-    today_noon_gregory_decathlon (extends today_noon, extends project_decathlon, extends user_gregory):
-        type: '@conge'
-    tomorrow_morning_gregory_walibuy (extends tomorrow_morning, extends project_walibuy, extends user_gregory):
+    today_noon_gregory_cp (extends today_noon, extends user_gregory):
+        type: '@conge_paye'
+    tomorrow_morning_gregory_decathlon (extends tomorrow_morning, extends project_decathlon, extends user_gregory):
         type: '@regie'
-    tomorrow_noon_gregory_walibuy (extends tomorrow_noon, extends project_walibuy, extends user_gregory):
-        type: '@regie'
+    tomorrow_noon_gregory_css (extends tomorrow_noon, extends user_gregory):
+        type: '@conge_ss'
