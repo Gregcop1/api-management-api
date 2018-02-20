@@ -4,9 +4,14 @@ default:
   suites:
     default:
       contexts:
-        - FeatureContext: { doctrine: "@doctrine" }
+        - FeatureContext:
+            - '@doctrine'
+            - '@fidry_alice_data_fixtures.doctrine.persister_loader'
+            - '%%kernel.root_dir%%'
+        - AuthContext
+        - RestContext
+        - UserContext
         - Behat\MinkExtension\Context\MinkContext
-        - Behatch\Context\RestContext
         - Behatch\Context\JsonContext
   extensions:
     Behat\Symfony2Extension:

@@ -1,6 +1,8 @@
 AppBundle\Entity\User:
   enabled (template):
       enabled: true
+  disabled (template):
+      enabled: false
 
   role_user (template):
       roles: ['ROLE_USER']
@@ -19,3 +21,7 @@ AppBundle\Entity\User:
       username: 'olivier'
       plainPassword: 'password'
       email: 'olivier@les-tilleuls.coop'
+  denis (extends role_user):
+      username: 'denis'
+      plainPassword: 'password'
+      email: 'denis@les-tilleuls.coop'

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "167e34fec4754b361d3d2c79b369aa4d",
+    "content-hash": "3d04735bb75aae4f6806546121238b2e",
     "packages": [
         {
             "name": "api-platform/core",
@@ -4007,16 +4007,16 @@
         },
         {
             "name": "behatch/contexts",
-            "version": "2.8.1",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behatch/contexts.git",
-                "reference": "2d0db1f4af9807cd0e1b59d445299cd086d43815"
+                "reference": "741f58ef24fb82b46ebe3c7e60399efe0fba8167"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behatch/contexts/zipball/2d0db1f4af9807cd0e1b59d445299cd086d43815",
-                "reference": "2d0db1f4af9807cd0e1b59d445299cd086d43815",
+                "url": "https://api.github.com/repos/Behatch/contexts/zipball/741f58ef24fb82b46ebe3c7e60399efe0fba8167",
+                "reference": "741f58ef24fb82b46ebe3c7e60399efe0fba8167",
                 "shasum": ""
             },
             "require": {
@@ -4041,13 +4041,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8.x-dev"
+                    "dev-master": "3.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Behatch\\": "src/",
-                    "Sanpi\\Behatch\\": "src/class_aliases/"
+                    "Behatch\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4061,7 +4060,7 @@
                 "Context",
                 "Symfony2"
             ],
-            "time": "2017-12-05T13:58:49+00:00"
+            "time": "2017-12-05T13:58:02+00:00"
         },
         {
             "name": "composer/semver",
